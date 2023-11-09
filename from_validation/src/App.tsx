@@ -29,12 +29,20 @@ function App() {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm<ISignUp>({
     mode: "onChange",
     resolver: zodResolver(signupSchema),
   });
   const onSubmit: SubmitHandler<ISignUp> = (data: ISignUp) => {
-    console.log(data);
+    const user = {
+      first_name: data.first_name,
+      last_name: data.last_name,
+      email: data.email,
+      password: data.password,
+    };
+    reset();
+    console.log(user);
   };
 
   return (
